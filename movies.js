@@ -84,6 +84,20 @@ function deleteMovie(id) {
 // deleteMovie(14)
 
 function displayMovies(data) {
+    let fullMovieData = ''
+    for (let movie of data) {
+        fullMovieData += getData(movie)
+    }
     let moviedata = document.querySelector('#moviedata');
-    moviedata.innerHTML = `<div>${data[0].director}</div>`
+    moviedata.innerHTML = fullMovieData
+}
+
+function getData(movie){
+    // console.log(`title: ${movie.title}`)
+    // console.log(`director: ${movie.director}`)
+    // console.log(`genre: ${movie.genre}`)
+    // console.log(`year: ${movie.year}`)
+    // console.log(`rating: ${movie.rating}`)
+    // console.log(`plot: ${movie.plot}`)
+    return `<div>${movie.director}</div>`
 }
