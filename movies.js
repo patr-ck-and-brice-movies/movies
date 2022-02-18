@@ -5,7 +5,11 @@ const url = "https://thunder-outrageous-polka.glitch.me/movies"
 function fetchAllMovies() {
     fetch(url)
         .then(res => res.json()
-            .then(data => console.log(data)))
+            .then(data => {
+                console.log(data)
+                displayMovies(data)
+            }))
+
         .catch(err => console.log(err));
 }
 fetchAllMovies();
@@ -78,3 +82,8 @@ function deleteMovie(id) {
 }
 
 // deleteMovie(14)
+
+function displayMovies(data) {
+    let moviedata = document.querySelector('#moviedata');
+    moviedata.innerHTML = `<div>${data[0].director}</div>`
+}
