@@ -64,3 +64,17 @@ function updateMovie(id) {
 }
 // updateMovie(4)
 
+function deleteMovie(id) {
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    fetch(`${url}/${id}`, options)
+        .then(res => res.json()
+            .then(() => console.log(`Movie deleted id: ${id}`)))
+        .catch(err => console.log(err));
+}
+
+// deleteMovie(14)
