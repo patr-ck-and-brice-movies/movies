@@ -47,6 +47,7 @@ function createMovie() {
 function updateMovie(id) {
     const movieUpdate = {
         title: 'new title',
+        actors: 'better actors',
     }
     const options = {
         method: 'PUT',
