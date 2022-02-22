@@ -169,7 +169,7 @@ function getData(movie){
 
         <a href="#"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_cover.jpg" alt="cover" class="cover" /></a>
 
-        <div class="hero" style="background: url(`${movie.poster}`)">
+        <div class="hero" style="background: url(${movie.poster})">
 
             <div class="details">
 
