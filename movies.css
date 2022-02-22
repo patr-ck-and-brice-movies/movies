@@ -213,15 +213,13 @@ a:hover {
     margin-bottom: 13px;
     position: relative;
 }
-span {
-    position: absolute;
-    top: 3px;
-    margin-left: 12px;
+
+.ratings {
     background: #C4AF3D;
     border-radius: 5px;
     color: #544C21;
     font-size: 14px;
-    padding: 0px 4px;
+    padding: 0 4px;
 
 }
 
