@@ -399,5 +399,11 @@ a[data-tooltip][data-placement="top"]::after {
     left: 20px;
     margin-bottom: 4px;
 }
-
+#moviesearch {
+    max-width: 25%;
+    height: 3em;
+}
+#addmovie {
+    width: 80px;
+}
 
