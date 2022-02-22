@@ -12,7 +12,7 @@ function fetchAllMovies() {
 
         .catch(err => console.log(err));
 }
-fetchAllMovies();
+
 
 function fetchOneMovie(id) {
     fetch(`${url}/${id}`)
@@ -22,26 +22,18 @@ function fetchOneMovie(id) {
 }
 // fetchOneMovie(4)
 
-function createMovie() {
-    const newMovie = {
-        title: "placeholder",
-        director: "placeholder",
-        actors: "placeholder",
-        genre: "placeholder",
-        year: "placeholder",
-        rating: "placeholder",
-        plot: "placeholder",
-    }
+function createMovie(movie) {
     const options = {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
         },
-        body: JSON.stringify(newMovie),
+        body: JSON.stringify(movie),
     };
     fetch(`${url}`, options)
         .then(res => {
             console.log('New movie has been saved');
+            fetchAllMovies();
         })
         .catch(err => console.log(err));
 }
