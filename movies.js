@@ -12,7 +12,7 @@ function fetchAllMovies() {
 
         .catch(err => console.log(err));
 }
-
+fetchAllMovies()
 
 function fetchOneMovie(id) {
     fetch(`${url}/${id}`)
