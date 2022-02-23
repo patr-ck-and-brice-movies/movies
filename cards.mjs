@@ -1,10 +1,12 @@
 "use strict";
 
+
+
+
 const url = "https://thunder-outrageous-polka.glitch.me/movies"
-// attempt at adding spinner
+// // attempt at adding spinner
 // document.onload = function() {
-//     import {Spinner} from 'spin.js';
-//
+//     // import {Spinner} from "./spin.umd.js";
 //     const opts = {
 //         lines: 13, // The number of lines to draw
 //         length: 38, // The length of each line
@@ -25,10 +27,10 @@ const url = "https://thunder-outrageous-polka.glitch.me/movies"
 //         className: 'spinner', // The CSS class to assign to the spinner
 //         position: 'absolute', // Element positioning
 //     };
-//
-//     let target = document.getElementById("moviedata");
 //     let spinner = new Spinner(opts).spin();
+//     let target = document.getElementById("moviedata");
 //     target.appendChild(spinner.el);
+//
 // }
 
 
@@ -104,7 +106,7 @@ function deleteMovie(id) {
     }
     fetch(`${url}/${id}`, options)
         .then(res => res.json()
-            .then(() => console.log(`Movie deleted id: ${id}`)))
+            .then(() => fetchAllMovies()))
         .catch(err => console.log(err));
 }
 
@@ -199,10 +201,10 @@ function getData(movie){
         return genreHTML
     }
     return `
-<div class="movie-card col-xs-12 col-md-6 col-xl-4">
+<div class="movie-card col-xs-12 col-md-6 col-xl-4" id="${movie.id}">
   <div class="cellphone-container">
     <div class="movie">
-      <div class="menu"><i class="material-icons">delete</i></div>
+      <div class="menu" onclick="deleteMovie(${movie.id})"><i class="material-icons">delete</i></div>
       <div class="movie-img" style="background-image: url(${movie.poster})"></div>
       <div class="text-movie-cont">
         <div class="mr-grid">
@@ -220,17 +222,17 @@ function getData(movie){
             <h5>SUMMARY</h5>
           </div>
           <div class="col2">
-            <fieldset class="rating">
-              <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-              <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-              <input type="radio" id="star4" name="rating" value="4" checked /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-              <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-              <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-              <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-              <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-              <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-              <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-              <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+            <fieldset class="rating" id="rating-${movie.id}">
+              <input type="radio" id="star5" name="rating-${movie.rating}" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+              <input type="radio" id="star4half" name="rating-${movie.rating}" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+              <input type="radio" id="star4" name="rating-${movie.rating}" value="4" checked /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+              <input type="radio" id="star3half" name="rating-${movie.rating}" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+              <input type="radio" id="star3" name="rating-${movie.rating}" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+              <input type="radio" id="star2half" name="rating-${movie.rating}" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+              <input type="radio" id="star2" name="rating-${movie.rating}" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+              <input type="radio" id="star1half" name="rating-${movie.rating}" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+              <input type="radio" id="star1" name="rating-${movie.rating}" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+              <input type="radio" id="starhalf" name="rating-${movie.rating}" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
             </fieldset>
           </div>
         </div>
