@@ -211,7 +211,7 @@ function getData(movie){
           </div>
         </div>
         <div class="mr-grid action-row">
-          <div class="col2"><div class="watch-btn" href="${movie.trailerURL}"><h3><i class="material-icons playsymb">&#xE037;</i>WATCH TRAILER</h3></div>
+          <div class="col2"><div class="watch-btn"><a href="${movie.trailerURL}" target="_blank"><h3><i class="material-icons playsymb">&#xE037;</i>WATCH TRAILER</h3></a></div>
         </div>
       </div>
     </div>
