@@ -202,7 +202,7 @@ function getData(movie){
         </div>
         <div class="mr-grid">
           <div class="col1">
-            <p class="movie-description">${movie.plot}</p>
+            <p class="movie-description" onclick="toggling(this)">${movie.plot}</p>
           </div>
         </div>
         <div class="mr-grid actors-row">
@@ -221,7 +221,17 @@ function getData(movie){
 `
 }
 
-$('.movie-description').click(function() {
-    console.log('this has been clicked')
-    $(this).toggleClass("full-movie-description");
-});
+// $('.movie-description').click(function() {
+//     console.log('this has been clicked')
+//     $(this).toggleClass("full-movie-description");
+// });
+function toggling(p) {
+    var className = p.getAttribute("class");
+    if(className==="movie-description") {
+        p.className = "full-movie-description";
+    }
+    else{
+        p.className = "movie-description";
+    }
+}
+
