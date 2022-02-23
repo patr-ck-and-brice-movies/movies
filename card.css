@@ -228,12 +228,21 @@ h5 {
     margin-top: 2px;
 }
 
-#addbox {
+#searchbox{
     position: absolute;
-    z-index: 999!important;
+    z-index: 998!important;
     /*top: 23em;*/
     top: 2em;
     right: 20px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+}
+#addbox {
+    position: absolute;
+    z-index: 998!important;
+    top: 23em;
+    left: 26px;
     text-align: center;
     display: flex;
     align-content: center;
@@ -256,6 +265,26 @@ h5 {
 }
 #addmovie>i {
     margin-top: 5px;
+}
+#moviesearch2 {
+    width: 300px;
+    height: 3em;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+#moviesearch2button {
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    width: 2.8em;
+    background-color: black;
+    color: #e7e7e7;
+    height: 2.8em;
+    margin-left: 5px;
+    margin-top: 1px;
+}
+#moviesearch2button>i {
+    margin-top: 7px;
+    margin-left: 2px;
 }
 
 
@@ -334,6 +363,7 @@ fieldset, label { margin: 0; padding: 0; }
     display:flex;
     justify-content: center;
     align-items: center;
+    z-index: 999!important;
 }
 
 .loader {
