@@ -174,7 +174,7 @@ function getData(movie){
       <div class="text-movie-cont">
         <div class="mr-grid">
           <div class="col1">
-            <h1>${movie.title}</h1>
+            <h1 class="title">${movie.title}</h1>
             <ul class="movie-gen">
               <li>${movie.MPAA} \/</li>
               <li>${movie.runtime} \/</li>

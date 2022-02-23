@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5 {
     color: #e7e7e7;
     margin: 0;
 }
-h1 {
+.title {
     font-size: 24px;
     font-weight: 400;
     overflow: hidden;
@@ -308,5 +308,10 @@ fieldset, label { margin: 0; padding: 0; }
 }
 .display-4 {
     margin-top: 4rem;
+    font-family: "Sigmar One", sans-serif;
+    font-size: 80px;
+}
+.lead {
+    font-family: "Titan One", sans-serif;
 }
 
