@@ -258,9 +258,10 @@ fieldset, label { margin: 0; padding: 0; }
 }
 
 #addbox {
-    position: fixed;
+    position: absolute;
     z-index: 999!important;
-    top: 8px;
+    /*top: 23em;*/
+    top: 2em;
     right: 20px;
     text-align: center;
     display: flex;
