@@ -299,5 +299,14 @@ fieldset, label { margin: 0; padding: 0; }
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
 
-
+.jumbotron {
+    background-image: url("Untitled_Artwork.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 22em;
+}
+.display-4 {
+    margin-top: 4rem;
+}
 
