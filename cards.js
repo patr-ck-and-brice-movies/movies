@@ -76,8 +76,6 @@ function deleteMovie(id) {
 }
 
 
-
-
 function displayMovies(data) {
     let fullMovieData = ''
     for (let movie of data) {
@@ -86,7 +84,6 @@ function displayMovies(data) {
     let moviedata = document.querySelector('#moviedata');
     moviedata.innerHTML = fullMovieData
 }
-
 
 
 let searchThis = "";
@@ -103,6 +100,8 @@ let movie = {
     poster: "",
     imDbID: "",
     trailerURL: "",
+    runtime: "",
+    MPAA: ""
 }
 
 $("#addmovie").click(function (){
@@ -134,6 +133,8 @@ function getMovieDetails(){
                 movie.plot = data.plot;
                 movie.poster = data.image;
                 movie.imDbID = data.id;
+                movie.runtime = data.runtimeStr;
+                movie.MPAA = data.contentRating;
                 getTrailer().then(r => {
                     movie.trailerURL = r
                     console.log(movie)
@@ -175,8 +176,8 @@ function getData(movie){
           <div class="col1">
             <h1>${movie.title}</h1>
             <ul class="movie-gen">
-              <li>PG-13  /</li>
-              <li>2h 49min  /</li>
+              <li>${movie.MPAA} \/</li>
+              <li>${movie.runtime} \/</li>
               <li>${movie.genre}</li>
             </ul>
           </div>
@@ -207,7 +208,8 @@ function getData(movie){
         </div>
         <div class="mr-grid actors-row">
           <div class="col1">
-            <p class="movie-actors">${movie.actors}</p>
+            <p class="movie-actors">Starring: ${movie.actors}</p>
+            <p class="movie-actors">Director: ${movie.director}</p>
           </div>
         </div>
         <div class="mr-grid action-row">
@@ -221,10 +223,6 @@ function getData(movie){
 `
 }
 
-// $('.movie-description').click(function() {
-//     console.log('this has been clicked')
-//     $(this).toggleClass("full-movie-description");
-// });
 function toggling(p) {
     var className = p.getAttribute("class");
     if(className==="movie-description") {

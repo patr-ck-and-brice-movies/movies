@@ -261,7 +261,7 @@ fieldset, label { margin: 0; padding: 0; }
     position: fixed;
     z-index: 999!important;
     top: 8px;
-    right: 10px;
+    right: 20px;
     text-align: center;
     display: flex;
     align-content: center;
