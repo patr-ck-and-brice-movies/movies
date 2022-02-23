@@ -162,6 +162,10 @@ h5 {
     font-style: italic;
 }
 
+.delete-icon {
+    cursor: grab;
+}
+
 
 /* TYPOGRAPHY ENDS */
 /** GRID STARTS **/

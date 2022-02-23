@@ -11,7 +11,6 @@ function fetchAllMovies() {
     fetch(url)
         .then(res => res.json()
             .then(data => {
-                console.log(data)
                 displayMovies(data)
             }))
 
@@ -24,10 +23,27 @@ fetchAllMovies()
 function fetchOneMovie(id) {
     fetch(`${url}/${id}`)
         .then(res => res.json()
-            .then(data => console.log(data)))
+            .then(data => {
+                displayMovies(data)
+            }))
         .catch(err => console.log(err));
 }
+// fetchOneMovie(288)
 
+let movieSearchBox = $('#moviesearch2');
+let movieSearchBTN = $('#moviesearch2button');
+function searchMovies(){
+    let searchVal = movieSearchBox.val()
+    for (let i = 0; i < movieTitles.length; i++) {
+        if(searchVal === movieTitles[i].title) {
+            fetchOneMovie(movieTitles[i].id)
+            break
+        } else {
+            fetchAllMovies()
+        }
+    }
+}
+movieSearchBTN.on('click', searchMovies)
 
 function createMovie(movie) {
     const options = {
@@ -83,8 +99,12 @@ function deleteMovie(id) {
 
 function displayMovies(data) {
     let fullMovieData = ''
-    for (let movie of data) {
-        fullMovieData += getData(movie)
+    if (data.length > 1) {
+        for (let movie of data) {
+            fullMovieData += getData(movie)
+        }
+    } else {
+        fullMovieData = getData(data)
     }
     let moviedata = document.querySelector('#moviedata');
     moviedata.innerHTML = fullMovieData
@@ -159,8 +179,12 @@ function getTrailer(){
         .catch(err => console.log(err));
 }
 
-
+let movieTitles = []
 function getData(movie){
+    movieTitles.push({
+        title: movie.title,
+        id: movie.id
+    })
     function getGenres(){
         let genreHTML = ''
         let genreString = `${movie.genre}`
@@ -174,7 +198,7 @@ function getData(movie){
 <div class="movie-card col-xs-12 col-md-6 col-xl-4" id="${movie.id}">
   <div class="cellphone-container">
     <div class="movie">
-      <div class="menu" onclick="deleteMovie(${movie.id})"><i class="material-icons">delete</i></div>
+      <div class="menu" onclick="deleteMovie(${movie.id})"><i class="material-icons delete-icon">delete</i></div>
       <div class="movie-img" style="background-image: url(${movie.poster})"></div>
       <div class="text-movie-cont">
         <div class="mr-grid">
