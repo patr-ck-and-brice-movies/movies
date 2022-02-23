@@ -22,7 +22,7 @@ function fetchOneMovie(id) {
             .then(data => console.log(data)))
         .catch(err => console.log(err));
 }
-// fetchOneMovie(4)
+
 
 function createMovie(movie) {
     const options = {
@@ -40,7 +40,7 @@ function createMovie(movie) {
         .catch(err => console.log(err));
 }
 
-// createMovie()
+
 
 function updateMovie(id) {
     const movieUpdate = {
@@ -60,7 +60,7 @@ function updateMovie(id) {
         })
         .catch(err => console.log(err));
 }
-// updateMovie(4)
+
 
 function deleteMovie(id) {
     const options = {
@@ -75,7 +75,7 @@ function deleteMovie(id) {
         .catch(err => console.log(err));
 }
 
-deleteMovie(257)
+
 
 
 function displayMovies(data) {
@@ -153,6 +153,7 @@ function getTrailer(){
         .catch(err => console.log(err));
 }
 
+
 function getData(movie){
     function getGenres(){
         let genreHTML = ''
@@ -165,55 +166,62 @@ function getData(movie){
     }
     return `
 <div class="movie-card col-xs-12 col-md-6 col-xl-4">
-
-    <div class="container">
-
-        <a href="#"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_cover.jpg" alt="cover" class="cover" /></a>
-
-        <div class="hero" style="background: url(${movie.poster})">
-
-            <div class="details">
-
-                <div class="title1">${movie.title}</div>
-
-                <div class="title2">${movie.year}, ${movie.director}</div>
-
-                <fieldset class="rating">
-                    <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                    <input type="radio" id="star4" name="rating" value="4" checked /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                </fieldset>
-
-                <span class="ratings">${movie.rating}</span>
-
-            </div> <!-- end details -->
-
-        </div> <!-- end hero -->
-
-        <div class="description">
-
-            <div class="column1" id="genres">
-                ${getGenres()}
-            </div> <!-- end column1 -->
-
-            <div class="column2">
-
-                <p id="plot">${movie.plot}</p>
-
-
-            </div> <!-- end column2 -->
-        </div> <!-- end description -->
-
-
-    </div> <!-- end container -->
+  <div class="cellphone-container">
+    <div class="movie">
+      <div class="menu"><i class="material-icons">delete</i></div>
+      <div class="movie-img" style="background-image: url(${movie.poster})"></div>
+      <div class="text-movie-cont">
+        <div class="mr-grid">
+          <div class="col1">
+            <h1>${movie.title}</h1>
+            <ul class="movie-gen">
+              <li>PG-13  /</li>
+              <li>2h 49min  /</li>
+              <li>${movie.genre}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mr-grid summary-row">
+          <div class="col2">
+            <h5>SUMMARY</h5>
+          </div>
+          <div class="col2">
+            <fieldset class="rating">
+              <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+              <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+              <input type="radio" id="star4" name="rating" value="4" checked /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+              <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+              <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+              <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+              <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+              <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+              <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+              <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="mr-grid">
+          <div class="col1">
+            <p class="movie-description">${movie.plot}</p>
+          </div>
+        </div>
+        <div class="mr-grid actors-row">
+          <div class="col1">
+            <p class="movie-actors">${movie.actors}</p>
+          </div>
+        </div>
+        <div class="mr-grid action-row">
+          <div class="col2"><div class="watch-btn" href="${movie.trailerURL}"><h3><i class="material-icons playsymb">&#xE037;</i>WATCH TRAILER</h3></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div> <!-- end movie-card -->
 `
 }
 
+$('.movie-description').click(function() {
+    console.log('this has been clicked')
+    $(this).toggleClass("full-movie-description");
+});
