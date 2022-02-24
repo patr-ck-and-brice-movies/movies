@@ -305,17 +305,16 @@ h6 {
 }
 
 #homebutton {
-    border: 1px solid #e7e7e7;
-    border-radius: 5px;
+    border: none;
     width: 2.8em;
-    background-color: black;
-    color: #e7e7e7;
+    background-color: white;
+    color: #838282;
     height: 2.8em;
-    margin-right: 5px;
     margin-top: 1px;
+    margin-left: -3em;
 }
 #homebutton>i {
-    margin-top: 6px;
+    margin-top: 7px;
 }
 
 
