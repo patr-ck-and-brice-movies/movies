@@ -12,6 +12,7 @@ function fetchAllMovies() {
     fetch(url)
         .then(res => res.json()
             .then(data => {
+                data.sort((a,b)=> (a.title > b.title ? 1 : -1))
                 displayMovies(data)
             }))
 
@@ -68,6 +69,14 @@ filterFavoritesBTN.on('click', filterMovies)
 filterFavoritesBTN.dblclick(function (){
     location.reload()
 })
+// sort by Rating
+let sortRatingBTN = $('#sortRating-button');
+function ratingSort(){
+    movieTitles.sort((a,b)=> (a.rating > b.rating ? -1 : 1))
+    displayMovies(movieTitles)
+}
+sortRatingBTN.on('click', ratingSort)
+
 
 // create a new movie function
 function createMovie(movie) {

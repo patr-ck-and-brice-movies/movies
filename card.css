@@ -252,13 +252,16 @@ h6 {
     align-content: center;
 }
 #addbox {
-    position: absolute;
+    /*position: absolute;*/
     z-index: 998!important;
     top: 23em;
     left: 26px;
     text-align: center;
     display: flex;
     align-content: center;
+    margin-right: auto;
+    margin-bottom: .5em;
+    margin-left: 1em;
 }
 #moviesearch {
     width: 300px;
@@ -313,7 +316,7 @@ h6 {
     margin-top: 7px;
 }
 #favorites-button {
-    position: absolute;
+    /*position: absolute;*/
     z-index: 998!important;
     top: 23em;
     right: 26px;
@@ -326,6 +329,7 @@ h6 {
     height: 2.6em;
     border: 1px solid #e7e7e7;
     border-radius: 5px;
+    margin-left: 1em;
     /*margin-top: 3px;*/
     /*right: 2em;*/
 }
@@ -335,6 +339,37 @@ h6 {
 #favorites-button>i {
     margin-top: 8px;
     margin-right: 4px;
+}
+#sortRating-button {
+    /*position: absolute;*/
+    z-index: 998!important;
+    top: 23em;
+    right: 180px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    width: 8.5em;
+    background-color: black;
+    color: #e7e7e7;
+    height: 2.6em;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    /*margin-top: 3px;*/
+    /*right: 2em;*/
+}
+#sortRating-button>p{
+    margin: auto;
+    color: #DAA520;
+}
+.top-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+#favorites{
+    display: flex;
+    margin-right: 1em;
+    margin-top: .2em;
+    margin-left: 1.3em;
 }
 
 .jumbotron {
