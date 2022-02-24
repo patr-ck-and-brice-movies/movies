@@ -37,7 +37,6 @@ function fetchOneMovie(id) {
 let movieSearchBox = $('#moviesearch2');
 let movieSearchBTN = $('#moviesearch2button');
 function searchMovies(){
-    console.log(movieTitles)
     let searchVal = movieSearchBox.val()
     for (let i = 0; i < movieTitles.length; i++) {
         console.log(searchVal)
@@ -212,7 +211,8 @@ let movieTitles = []
 function getData(movie){
     movieTitles.push({
         title: movie.title,
-        id: parseInt(movie.id)
+        id: parseInt(movie.id),
+        favorite: movie.favorite
     })
     function getGenres(){
         let genreHTML = ''
