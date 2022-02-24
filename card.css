@@ -367,9 +367,15 @@ h6 {
 }
 #favorites{
     display: flex;
-    margin-right: 1em;
+    margin-right: 20px;
     margin-top: .2em;
-    margin-left: 1.3em;
+    margin-left: 1.1em;
+}
+#sort-by{
+    margin-right: 10px;
+    margin-top: 17px;
+    color: #9b9b9b;
+    font-size: 20px;
 }
 
 .jumbotron {
