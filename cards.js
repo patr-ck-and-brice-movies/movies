@@ -3,11 +3,12 @@
 
 const url = "https://thunder-outrageous-polka.glitch.me/movies"
 
-$(window).on("load",function(){
-    $(".loader-wrapper").fadeOut("slow");
-});
+
 
 function fetchAllMovies() {
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
     fetch(url)
         .then(res => res.json()
             .then(data => {
@@ -18,8 +19,8 @@ function fetchAllMovies() {
 }
 
 fetchAllMovies()
-$('.jumbotron-fluid').click(function() {
-    fetchAllMovies()
+$('#homebutton').click(function() {
+    location.reload()
     });
 
 
@@ -31,18 +32,19 @@ function fetchOneMovie(id) {
             }))
         .catch(err => console.log(err));
 }
-// fetchOneMovie(288)
+
 
 let movieSearchBox = $('#moviesearch2');
 let movieSearchBTN = $('#moviesearch2button');
 function searchMovies(){
+    console.log(movieTitles)
     let searchVal = movieSearchBox.val()
     for (let i = 0; i < movieTitles.length; i++) {
-        if(searchVal === movieTitles[i].title) {
+        console.log(searchVal)
+        console.log(movieTitles[i].id)
+        if(searchVal.toLowerCase() === movieTitles[i].title.toLowerCase()) {
             fetchOneMovie(movieTitles[i].id)
             break
-        } else {
-            fetchAllMovies()
         }
     }
 }
@@ -64,25 +66,55 @@ function createMovie(movie) {
         .catch(err => console.log(err));
 }
 
+function togglingTwo(p) {
+    let className = p.getAttribute("class");
+    if(className==="fa fa-heart heart") {
+        p.className = "fa fa-heart redheart";
+    }
+    else{
+        p.className = "fa fa-heart heart";
+    }
+}
+
+
 
 
 function updateMovie(id) {
-    const movieUpdate = {
-        title: 'new title',
-        actors: 'better actors',
-    }
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Content-Type' : 'application/json',
-        },
-        body: JSON.stringify(movieUpdate),
-    };
-    fetch(`${url}/${id}`, options)
-        .then(res => {
-            console.log(`Movie ${id} has been updated`)
-        })
+    fetch(`${url}/${id}`)
+        .then(res => res.json()
+            .then(data => {
+                let movieUpdate = {
+                    title: data.title,
+                    director: data.director,
+                    actors: data.actors,
+                    genre: data.genre,
+                    year: data.year,
+                    rating: data.rating,
+                    plot: data.plot,
+                    poster: data.poster,
+                    imDbID: data.imDbID,
+                    trailerURL: data.trailerURL,
+                    runtime: data.runtime,
+                    MPAA: data.MPAA,
+                    favorite: data.favorite
+                }
+                movieUpdate.favorite = movieUpdate.favorite === false;
+                console.log(movieUpdate)
+                const options = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type' : 'application/json',
+                    },
+                    body: JSON.stringify(movieUpdate),
+                };
+                fetch(`${url}/${id}`, options)
+                    .then(res => {
+                        console.log(`Movie ${id} has been updated`)
+                    })
+                    .catch(err => console.log(err));
+            }))
         .catch(err => console.log(err));
+
 }
 
 
@@ -102,6 +134,7 @@ function deleteMovie(id) {
 
 function displayMovies(data) {
     let fullMovieData = ''
+    movieTitles = []
     if (data.length > 1) {
         for (let movie of data) {
             fullMovieData += getData(movie)
@@ -115,7 +148,7 @@ function displayMovies(data) {
 
 
 let searchThis = "";
-let movieID = "";
+let movieID = 0;
 let movieTrailer = "";
 let movie = {
     title: "",
@@ -129,13 +162,16 @@ let movie = {
     imDbID: "",
     trailerURL: "",
     runtime: "",
-    MPAA: ""
+    MPAA: "",
+    favorite: false
 }
 
 $("#addmovie").click(function (){
     searchThis = $('#moviesearch').val()
     searchIMDB()
 })
+
+
 
 function searchIMDB(){
     fetch(`https://imdb-api.com/en/API/SearchMovie/${IMDb_TOKEN}/${searchThis}`)
@@ -157,7 +193,7 @@ function getMovieDetails(){
                 movie.actors = data.stars;
                 movie.genre = data.genres;
                 movie.year = data.year;
-                movie.rating = parseInt(data.imDbRating)/2;
+                movie.rating = data.imDbRating;
                 movie.plot = data.plot;
                 movie.poster = data.image;
                 movie.imDbID = data.id;
@@ -168,6 +204,7 @@ function getMovieDetails(){
                     console.log(movie)
                     createMovie(movie)
                 })
+                movie.favorite = false
             }))
         .catch(err => console.log(err));
 }
@@ -186,7 +223,7 @@ let movieTitles = []
 function getData(movie){
     movieTitles.push({
         title: movie.title,
-        id: movie.id
+        id: parseInt(movie.id)
     })
     function getGenres(){
         let genreHTML = ''
@@ -198,7 +235,7 @@ function getData(movie){
         return genreHTML
     }
     return `
-<div class="movie-card col-xs-12 col-md-6 col-xl-4" id="${movie.id}">
+<div class="movie-card col-xs-12 col-md-6 col-xl-4 mb-5 pb-5" id="movie-${movie.id}">
   <div class="cellphone-container">
     <div class="movie">
       <div class="menu" onclick="deleteMovie(${movie.id})"><i class="material-icons delete-icon">delete</i></div>
@@ -213,25 +250,8 @@ function getData(movie){
               <li>${movie.genre}</li>
             </ul>
           </div>
-        </div>
-        <div class="mr-grid summary-row">
-          <div class="col2">
-            <h5>SUMMARY</h5>
-          </div>
-          <div class="col2">
-            <fieldset class="rating" id="rating-${movie.id}">
-              <input type="radio" id="star5-${movie.id}" name="rating-${movie.rating}" value="5" checked/><label class="full" for="star5" title="Awesome - 5 stars"></label>
-              <input type="radio" id="star4half-${movie.id}" name="rating-${movie.rating}" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-              <input type="radio" id="star4-${movie.id}" name="rating-${movie.rating}" value="4"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-              <input type="radio" id="star3half-${movie.id}" name="rating-${movie.rating}" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-              <input type="radio" id="star3-${movie.id}" name="rating-${movie.rating}" value="3"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-              <input type="radio" id="star2half-${movie.id}" name="rating-${movie.rating}" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-              <input type="radio" id="star2-${movie.id}" name="rating-${movie.rating}" value="2"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-              <input type="radio" id="star1half-${movie.id}" name="rating-${movie.rating}" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-              <input type="radio" id="star1-${movie.id}" name="rating-${movie.rating}" value="1"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-              <input type="radio" id="starhalf-${movie.id}" name="rating-${movie.rating}" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-            </fieldset>
-          </div>
+          <h6>IMDb Rating: ${movie.rating} out of 10</h6>
+          <h5>SUMMARY</h5>
         </div>
         <div class="mr-grid">
           <div class="col1">
@@ -247,6 +267,7 @@ function getData(movie){
         <div class="mr-grid action-row">
           <div class="col2"><div class="watch-btn"><a href="${movie.trailerURL}" onclick="return !window.open(this.href, 'YouTube', 'width=600, height=400')"><h3><i class="material-icons playsymb">&#xE037;</i>WATCH TRAILER</h3></a></div>
         </div>
+        <div><i class="fa fa-heart heart" id="heart-${movie.id}" onclick="updateMovie(${movie.id})"></i></div> 
       </div>
     </div>
   </div>
@@ -256,7 +277,7 @@ function getData(movie){
 }
 
 function toggling(p) {
-    var className = p.getAttribute("class");
+    let className = p.getAttribute("class");
     if(className==="movie-description") {
         p.className = "full-movie-description";
     }
@@ -264,4 +285,10 @@ function toggling(p) {
         p.className = "movie-description";
     }
 }
+
+
+
+
+
+
 
