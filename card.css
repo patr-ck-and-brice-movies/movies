@@ -207,7 +207,7 @@ h6 {
     float: left;
     display: block;
 }
-/* Columns match, minus margin sum. E.G. margin-left+margin-right=1%, col2=50%-1% - added padding:1%*/
+
 .col1 {
     width: 98%;
 }
@@ -316,7 +316,6 @@ h6 {
     margin-top: 7px;
 }
 #favorites-button {
-    /*position: absolute;*/
     z-index: 998!important;
     top: 23em;
     right: 26px;
@@ -330,9 +329,8 @@ h6 {
     border: 1px solid #e7e7e7;
     border-radius: 5px;
     margin-left: 1em;
-    /*margin-top: 3px;*/
-    /*right: 2em;*/
 }
+
 #favorites-button>p{
     margin: auto;
 }
@@ -381,12 +379,13 @@ h6 {
 .jumbotron {
     background-image: url("Untitled_Artwork.png");
     background-size: 100%;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
-    height: 22em;
+    height: 24em;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 1)), color-stop(0.35, rgba(0, 0, 0, 1)), color-stop(0.5, rgba(0, 0, 0, 1)), color-stop(0.65, rgba(0, 0, 0, 1)), color-stop(0.85, rgba(0, 0, 0, 0.6)), color-stop(1, rgba(0, 0, 0, 0)));
 }
 .display-4 {
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-family: "Sigmar One", sans-serif;
     font-size: 80px;
 }
