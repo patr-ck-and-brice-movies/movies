@@ -318,51 +318,6 @@ h6 {
 }
 
 
-/*fieldset, label { margin: 0; padding: 0; }*/
-
-/*!****** Style Star Rating Widget *****!*/
-
-/*.rating {*/
-/*    border: none;*/
-/*    float: left;*/
-/*}*/
-
-/*.rating > input { display: none; }*/
-/*.rating > label:before {*/
-/*    margin: 5px;*/
-/*    margin-top: 0;*/
-/*    font-size: 1em;*/
-/*    font-family: FontAwesome, sans-serif;*/
-/*    display: inline-block;*/
-/*    content: "\f005";*/
-/*}*/
-
-/*.rating > .half:before {*/
-/*    content: "\f089";*/
-/*    position: absolute;*/
-/*}*/
-
-/*.rating > label {*/
-/*    color: #ddd;*/
-/*    float: right;*/
-/*}*/
-
-/*.fa-angle-down {*/
-/*    color: #ddd;*/
-/*}*/
-
-
-/*!***** CSS Magic to Highlight Stars on Hover *****!*/
-
-/*.rating > input:checked ~ label, !* show gold star when clicked *!*/
-/*.rating:not(:checked) > label:hover, !* hover current star *!*/
-/*.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } !* hover previous stars in list *!*/
-/*.rating > .input:checked + label:hover, !* hover current star when changing rating *!*/
-/*.rating > input:checked ~ label:hover,*/
-/*.rating > label:hover ~ input:checked ~ label, !* lighten current selection *!*/
-/*.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }*/
-
-
 .jumbotron {
     background-image: url("Untitled_Artwork.png");
     background-size: 100%;
@@ -444,13 +399,13 @@ h6 {
         height: 0%;
     }
 }
-.heart {
+.false {
     color: #FFFFFF;
     font-size: 24px;
     float: right;
     margin-top: 5px;
 }
-.redheart {
+.true {
     color: #e10f0f;
     font-size: 24px;
     float: right;

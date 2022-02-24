@@ -110,11 +110,11 @@ function updateMovie(id) {
                 fetch(`${url}/${id}`, options)
                     .then(res => {
                         console.log(`Movie ${id} has been updated`)
+                        fetchAllMovies()
                     })
                     .catch(err => console.log(err));
             }))
         .catch(err => console.log(err));
-
 }
 
 
@@ -267,7 +267,7 @@ function getData(movie){
         <div class="mr-grid action-row">
           <div class="col2"><div class="watch-btn"><a href="${movie.trailerURL}" onclick="return !window.open(this.href, 'YouTube', 'width=600, height=400')"><h3><i class="material-icons playsymb">&#xE037;</i>WATCH TRAILER</h3></a></div>
         </div>
-        <div><i class="fa fa-heart heart" id="heart-${movie.id}" onclick="updateMovie(${movie.id})"></i></div> 
+        <div><i class="fa fa-heart ${movie.favorite}" onclick="updateMovie(${movie.id})"></i></div> 
       </div>
     </div>
   </div>
@@ -276,15 +276,7 @@ function getData(movie){
 `
 }
 
-function toggling(p) {
-    let className = p.getAttribute("class");
-    if(className==="movie-description") {
-        p.className = "full-movie-description";
-    }
-    else{
-        p.className = "movie-description";
-    }
-}
+
 
 
 
