@@ -296,7 +296,7 @@ h6 {
     background-color: black;
     color: #e7e7e7;
     height: 2.8em;
-    margin-left: 5px;
+    margin-left: 12px;
     margin-top: 1px;
 }
 #moviesearch2button>i {
@@ -306,11 +306,11 @@ h6 {
 
 #homebutton {
     border: none;
-    width: 2.8em;
+    width: 2.6em;
     background-color: white;
     color: #838282;
-    height: 2.8em;
-    margin-top: 1px;
+    height: 2.6em;
+    margin-top: 3px;
     margin-left: -3em;
 }
 #homebutton>i {
