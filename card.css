@@ -126,10 +126,6 @@ h6 {
     float: right;
 }
 
-.starsymbol {
-    font-size: 12px;
-    margin-top: 5px;
-}
 .movie-gen {
     margin: 0;
     padding: 0;
@@ -316,7 +312,30 @@ h6 {
 #homebutton>i {
     margin-top: 7px;
 }
-
+#favorites-button {
+    position: absolute;
+    z-index: 998!important;
+    top: 23em;
+    right: 26px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    width: 8.5em;
+    background-color: black;
+    color: #e7e7e7;
+    height: 2.6em;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    /*margin-top: 3px;*/
+    /*right: 2em;*/
+}
+#favorites-button>p{
+    margin: auto;
+}
+#favorites-button>i {
+    margin-top: 8px;
+    margin-right: 4px;
+}
 
 .jumbotron {
     background-image: url("Untitled_Artwork.png");

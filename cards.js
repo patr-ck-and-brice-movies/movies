@@ -52,6 +52,23 @@ function searchMovies(){
     }
 }
 movieSearchBTN.on('click', searchMovies)
+// filter favorites function
+let filterFavoritesBTN = $('#favorites-button');
+let filteredFavorites = []
+function filterMovies(){
+    for (let i = 0; i < movieTitles.length; i++) {
+        if(movieTitles[i].favorite === true) {
+            filteredFavorites.push(movieTitles[i])
+        }
+    }
+    console.log(filteredFavorites)
+    displayMovies(filteredFavorites)
+}
+filterFavoritesBTN.on('click', filterMovies)
+filterFavoritesBTN.dblclick(function (){
+    location.reload()
+})
+
 // create a new movie function
 function createMovie(movie) {
     const options = {
@@ -215,9 +232,22 @@ function getTrailer(){
 let movieTitles = []
 function getData(movie){
     movieTitles.push({
-        title: movie.title,
+        // title: movie.title,
         id: parseInt(movie.id),
-        favorite:movie.favorite
+        // favorite:movie.favorite
+        title: movie.title,
+        director: movie.director,
+        actors: movie.actors,
+        genre: movie.genre,
+        year: movie.year,
+        rating: movie.rating,
+        plot: movie.plot,
+        poster: movie.poster,
+        imDbID: movie.imDbID,
+        trailerURL: movie.trailerURL,
+        runtime: movie.runtime,
+        MPAA: movie.MPAA,
+        favorite: movie.favorite
     })
     function getGenres(){
         let genreHTML = ''
