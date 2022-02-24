@@ -3,7 +3,7 @@
 
 const url = "https://thunder-outrageous-polka.glitch.me/movies"
 
-
+// get all movies from gltich-me
 
 function fetchAllMovies() {
     $(window).on("load",function(){
@@ -17,8 +17,9 @@ function fetchAllMovies() {
 
         .catch(err => console.log(err));
 }
-
 fetchAllMovies()
+
+// listeners for reload
 $('#homebutton').click(function() {
     location.reload()
     });
@@ -26,7 +27,7 @@ $('.jumbotron').click(function() {
     location.reload()
 });
 
-
+// get a single movie from glitch-me
 function fetchOneMovie(id) {
     fetch(`${url}/${id}`)
         .then(res => res.json()
@@ -35,7 +36,7 @@ function fetchOneMovie(id) {
             }))
         .catch(err => console.log(err));
 }
-
+// search movies function
 
 let movieSearchBox = $('#moviesearch2');
 let movieSearchBTN = $('#moviesearch2button');
@@ -51,7 +52,7 @@ function searchMovies(){
     }
 }
 movieSearchBTN.on('click', searchMovies)
-
+// create a new movie function
 function createMovie(movie) {
     const options = {
         method: 'POST',
@@ -69,7 +70,7 @@ function createMovie(movie) {
 }
 
 
-
+// update a movie function
 function updateMovie(id) {
     fetch(`${url}/${id}`)
         .then(res => res.json()
@@ -108,7 +109,7 @@ function updateMovie(id) {
         .catch(err => console.log(err));
 }
 
-
+// delete a movie function
 function deleteMovie(id) {
     const options = {
         method: 'DELETE',
@@ -137,7 +138,7 @@ function displayMovies(data) {
     moviedata.innerHTML = fullMovieData
 }
 
-
+// initiate variables
 let searchThis = "";
 let movieID = 0;
 let movieTrailer = "";
@@ -156,14 +157,14 @@ let movie = {
     MPAA: "",
     favorite: false
 }
-
+//listener for search box
 $("#addmovie").click(function (){
     searchThis = $('#moviesearch').val()
     searchIMDB()
 })
 
 
-
+// get movie ID from  IMDb
 function searchIMDB(){
     fetch(`https://imdb-api.com/en/API/SearchMovie/${IMDb_TOKEN}/${searchThis}`)
         .then(res => res.json()
@@ -174,7 +175,7 @@ function searchIMDB(){
 
         .catch(err => console.log(err));
 }
-
+// get movie information from ID
 function getMovieDetails(){
     fetch(`https://imdb-api.com/en/API/Title/${IMDb_TOKEN}/${movieID}`)
         .then(res => res.json()
@@ -199,7 +200,7 @@ function getMovieDetails(){
             }))
         .catch(err => console.log(err));
 }
-
+// get trailer from IMDb
 function getTrailer(){
     return fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${IMDb_TOKEN}/${movieID}`)
         .then(res => res.json()
@@ -210,6 +211,7 @@ function getTrailer(){
         .catch(err => console.log(err));
 }
 
+// creates movie cards
 let movieTitles = []
 function getData(movie){
     movieTitles.push({
@@ -268,7 +270,7 @@ function getData(movie){
 `
 }
 
-
+//toggles expanded plot box
 function toggling(p) {
     let className = p.getAttribute("class");
     if(className==="movie-description") {
