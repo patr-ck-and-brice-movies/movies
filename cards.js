@@ -7,15 +7,15 @@ const url = "https://thunder-outrageous-polka.glitch.me/movies"
 
 function fetchAllMovies() {
     $(window).on("load",function(){
+        fetch(url)
+            .then(res => res.json()
+                .then(data => {
+                    displayMovies(data)
+                }))
+
+            .catch(err => console.log(err));
         $(".loader-wrapper").fadeOut("slow");
     });
-    fetch(url)
-        .then(res => res.json()
-            .then(data => {
-                displayMovies(data)
-            }))
-
-        .catch(err => console.log(err));
 }
 
 fetchAllMovies()
