@@ -212,7 +212,7 @@ function getData(movie){
     movieTitles.push({
         title: movie.title,
         id: parseInt(movie.id),
-        favorite: movie.favorite
+        favorite:movie.favorite
     })
     function getGenres(){
         let genreHTML = ''
@@ -266,7 +266,15 @@ function getData(movie){
 }
 
 
+function toggling(p) {
+    let className = p.getAttribute("class");
+    if(className==="movie-description") {
+        p.className = "full-movie-description";
+    } else {
+        p.className = "movie-description";
+    }
 
+}
 
 
 
