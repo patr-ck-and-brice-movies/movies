@@ -22,6 +22,9 @@ fetchAllMovies()
 $('#homebutton').click(function() {
     location.reload()
     });
+$('.jumbotron').click(function() {
+    location.reload()
+});
 
 
 function fetchOneMovie(id) {
