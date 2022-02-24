@@ -66,17 +66,6 @@ function createMovie(movie) {
         .catch(err => console.log(err));
 }
 
-function togglingTwo(p) {
-    let className = p.getAttribute("class");
-    if(className==="fa fa-heart heart") {
-        p.className = "fa fa-heart redheart";
-    }
-    else{
-        p.className = "fa fa-heart heart";
-    }
-}
-
-
 
 
 function updateMovie(id) {
