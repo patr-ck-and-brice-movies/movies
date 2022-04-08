@@ -30,6 +30,12 @@ $('.jumbotron').click(function() {
 
 let movieSearchBox = $('#moviesearch2');
 let movieSearchBTN = $('#moviesearch2button');
+$('#moviesearch2').keyup(function(event) {
+    if (event.keyCode === 13) {
+        $('#moviesearch2button').click();
+    }
+});
+
 let filteredFavorites = []
 function searchMovies(){
     let searchVal = movieSearchBox.val()
@@ -41,6 +47,7 @@ function searchMovies(){
     displayMovies(filteredFavorites)
 }
 movieSearchBTN.on('click', searchMovies)
+
 let filterFavoritesBTN = $('#favorites-button');
 let status = "norm"
 function filterMovies(){
@@ -164,7 +171,12 @@ let movie = {
 $("#addmovie").click(function (){
     searchThis = $('#moviesearch').val()
     searchIMDB()
-})
+});
+$('#moviesearch').keyup(function(event) {
+    if (event.keyCode === 13) {
+        $('#addmovie').click();
+    }
+});
 
 
 // get movie ID from  IMDb
