@@ -45,14 +45,20 @@ movieSearchBTN.on('click', searchMovies)
 // filter favorites function
 let filterFavoritesBTN = $('#favorites-button');
 let filteredFavorites = []
+let status = "norm"
 function filterMovies(){
+if(status === "norm") {
     for (let i = 0; i < movieTitles.length; i++) {
-        if(movieTitles[i].favorite === true) {
+        if (movieTitles[i].favorite === true) {
             filteredFavorites.push(movieTitles[i])
         }
     }
-    console.log(filteredFavorites)
     displayMovies(filteredFavorites)
+    status = "favs"
+} else {
+    window.location.reload();
+}
+
 }
 filterFavoritesBTN.on('click', filterMovies)
 filterFavoritesBTN.dblclick(function (){
