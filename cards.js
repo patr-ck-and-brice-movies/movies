@@ -30,21 +30,18 @@ $('.jumbotron').click(function() {
 
 let movieSearchBox = $('#moviesearch2');
 let movieSearchBTN = $('#moviesearch2button');
+let filteredFavorites = []
 function searchMovies(){
     let searchVal = movieSearchBox.val()
     for (let i = 0; i < movieTitles.length; i++) {
-        console.log(searchVal)
-        console.log(movieTitles[i].id)
-        if(searchVal.toLowerCase() === movieTitles[i].title.toLowerCase()) {
-            displayMovies(movieTitles[i])
-            break
+        if(searchVal.toLowerCase() === movieTitles[i].title.toLowerCase() || movieTitles[i].actors.toLowerCase().includes(searchVal.toLowerCase()) || movieTitles[i].genre.toLowerCase().includes(searchVal.toLowerCase())) {
+            filteredFavorites.push(movieTitles[i])
         }
     }
+    displayMovies(filteredFavorites)
 }
 movieSearchBTN.on('click', searchMovies)
-// filter favorites function
 let filterFavoritesBTN = $('#favorites-button');
-let filteredFavorites = []
 let status = "norm"
 function filterMovies(){
 if(status === "norm") {
