@@ -1,9 +1,7 @@
 "use strict";
 
 
-const url = "https://thunder-outrageous-polka.glitch.me/movies"
-
-// get all movies from gltich-me
+const url = "http://localhost:8081/movies"
 
 function fetchAllMovies() {
     $(window).on("load",function(){
@@ -23,20 +21,11 @@ fetchAllMovies()
 // listeners for reload
 $('#homebutton').click(function() {
     location.reload()
-    });
+});
 $('.jumbotron').click(function() {
     location.reload()
 });
 
-// get a single movie from glitch-me
-function fetchOneMovie(id) {
-    fetch(`${url}/${id}`)
-        .then(res => res.json()
-            .then(data => {
-                displayMovies(data)
-            }))
-        .catch(err => console.log(err));
-}
 // search movies function
 
 let movieSearchBox = $('#moviesearch2');
@@ -47,7 +36,7 @@ function searchMovies(){
         console.log(searchVal)
         console.log(movieTitles[i].id)
         if(searchVal.toLowerCase() === movieTitles[i].title.toLowerCase()) {
-            fetchOneMovie(movieTitles[i].id)
+            displayMovies(movieTitles[i])
             break
         }
     }
@@ -98,24 +87,12 @@ function createMovie(movie) {
 
 // update a movie function
 function updateMovie(id) {
-    fetch(`${url}/${id}`)
-        .then(res => res.json()
-            .then(data => {
-                let movieUpdate = {
-                    title: data.title,
-                    director: data.director,
-                    actors: data.actors,
-                    genre: data.genre,
-                    year: data.year,
-                    rating: data.rating,
-                    plot: data.plot,
-                    poster: data.poster,
-                    imDbID: data.imDbID,
-                    trailerURL: data.trailerURL,
-                    runtime: data.runtime,
-                    MPAA: data.MPAA,
-                    favorite: data.favorite
-                }
+    let movieUpdate;
+    for (let i = 0; i < movieTitles.length; i++) {
+        if(movieTitles[i].id === id) {
+            movieUpdate = movieTitles[i]
+        }
+    }
                 movieUpdate.favorite = movieUpdate.favorite === false;
                 console.log(movieUpdate)
                 const options = {
@@ -126,13 +103,9 @@ function updateMovie(id) {
                     body: JSON.stringify(movieUpdate),
                 };
                 fetch(`${url}/${id}`, options)
-                    .then(res => {
-                        console.log(`Movie ${id} has been updated`)
-                        fetchAllMovies()
-                    })
+                    .then(res =>
+                        fetchAllMovies())
                     .catch(err => console.log(err));
-            }))
-        .catch(err => console.log(err));
 }
 
 // delete a movie function
@@ -141,11 +114,12 @@ function deleteMovie(id) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-        }
+        },
+        body: id
     }
     fetch(`${url}/${id}`, options)
-        .then(res => res.json()
-            .then(() => fetchAllMovies()))
+        .then(res =>
+            fetchAllMovies())
         .catch(err => console.log(err));
 }
 
@@ -241,9 +215,7 @@ function getTrailer(){
 let movieTitles = []
 function getData(movie){
     movieTitles.push({
-        // title: movie.title,
         id: parseInt(movie.id),
-        // favorite:movie.favorite
         title: movie.title,
         director: movie.director,
         actors: movie.actors,
@@ -258,15 +230,6 @@ function getData(movie){
         MPAA: movie.MPAA,
         favorite: movie.favorite
     })
-    function getGenres(){
-        let genreHTML = ''
-        let genreString = `${movie.genre}`
-        let genreArray = genreString.split(', ')
-        for (let i = 0; i < genreArray.length; i++) {
-            genreHTML += `<span class="tag">${genreArray[i]}</span>`
-        }
-        return genreHTML
-    }
     return `
 <div class="movie-card col-xs-12 col-md-6 col-xl-4 mb-5 pb-5" id="movie-${movie.id}">
   <div class="cellphone-container">
@@ -319,9 +282,3 @@ function toggling(p) {
     }
 
 }
-
-
-
-
-
-

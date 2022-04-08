@@ -377,7 +377,7 @@ h6 {
 }
 
 .jumbotron {
-    background-image: url("Untitled_Artwork.png");
+    background: url("Untitled_Artwork.png");
     background-size: 100%;
     background-position: bottom;
     background-repeat: no-repeat;
