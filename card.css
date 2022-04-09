@@ -179,9 +179,6 @@ h6 {
     cursor: grab;
 }
 
-
-/* TYPOGRAPHY ENDS */
-/** GRID STARTS **/
 .thegrid {
     margin: 0 auto;
 }
@@ -223,7 +220,7 @@ h6 {
 .col6 {
     width: 13.6666666667%;
 }
-/* Columns match with their individual number. E.G. col3+col3rest=full width row */
+
 .col3rest {
     width: 63.6666666667%;
 }
@@ -252,7 +249,6 @@ h6 {
     align-content: center;
 }
 #addbox {
-    /*position: absolute;*/
     z-index: 998!important;
     top: 23em;
     left: 26px;
@@ -339,7 +335,6 @@ h6 {
     margin-right: 4px;
 }
 #sortRating-button {
-    /*position: absolute;*/
     z-index: 998!important;
     top: 23em;
     right: 180px;
@@ -352,8 +347,6 @@ h6 {
     height: 2.6em;
     border: 1px solid #e7e7e7;
     border-radius: 5px;
-    /*margin-top: 3px;*/
-    /*right: 2em;*/
 }
 #sortRating-button>p{
     margin: auto;
