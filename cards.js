@@ -45,6 +45,7 @@ function searchMovies(){
         }
     }
     displayMovies(filteredFavorites)
+    $('#moviesearch2').val('')
 }
 movieSearchBTN.on('click', searchMovies)
 
@@ -171,6 +172,7 @@ let movie = {
 $("#addmovie").click(function (){
     searchThis = $('#moviesearch').val()
     searchIMDB()
+    $('#moviesearch').val('')
 });
 $('#moviesearch').keyup(function(event) {
     if (event.keyCode === 13) {
