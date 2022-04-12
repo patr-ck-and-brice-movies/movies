@@ -1,7 +1,7 @@
 "use strict";
 
 
-const url = "http://localhost:8081/movies"
+const url = "http://localhost:8080/movies"
 
 function fetchAllMovies() {
     $(window).on("load",function(){
@@ -44,7 +44,11 @@ function searchMovies(){
             filteredFavorites.push(movieTitles[i])
         }
     }
-    displayMovies(filteredFavorites)
+    if (filteredFavorites.length === 1){
+        displayMovies(filteredFavorites[0])
+    } else {
+        displayMovies(filteredFavorites)
+    }
     $('#moviesearch2').val('')
 }
 movieSearchBTN.on('click', searchMovies)
@@ -58,7 +62,11 @@ if(status === "norm") {
             filteredFavorites.push(movieTitles[i])
         }
     }
-    displayMovies(filteredFavorites)
+    if (filteredFavorites.length === 1){
+        displayMovies(filteredFavorites[0])
+    } else {
+        displayMovies(filteredFavorites)
+    }
     status = "favs"
 } else {
     window.location.reload();
@@ -85,7 +93,7 @@ function createMovie(movie) {
         headers: {
             'Content-Type' : 'application/json',
         },
-        body: JSON.stringify(movie),
+        body: JSON.stringify([movie]),
     };
     fetch(`${url}`, options)
         .then(res => {
